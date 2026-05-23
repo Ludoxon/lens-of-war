@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=600, height=600, initial-scale=1.0, user-scalable=no">
+  <title>Lens of War</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- TITLE SCREEN -->
+    <div id="title-screen" class="screen">
+      <div class="title-content">
+        <div class="title-swords">&#9876; &#9876;</div>
+        <h1 class="title-name">LENS OF WAR</h1>
+        <p class="title-sub">A Battle Through Time</p>
+        <button class="title-btn focusable" id="title-start" data-title="start">Start Game</button>
+        <button class="title-btn focusable" id="title-music" data-title="music">Music: ON</button>
+        <button class="title-btn focusable" id="title-sfx" data-title="sfx">Sound: ON</button>
+        <div class="title-controls">
+          <span>&#8592;&#8594; Select &middot; Enter Spawn &middot; Esc Pause</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIFFICULTY SCREEN -->
+    <div id="difficulty-screen" class="screen hidden">
+      <div class="difficulty-content">
+        <h2 class="diff-title">SELECT DIFFICULTY</h2>
+        <button class="diff-btn focusable" data-difficulty="normal">Easy</button>
+        <button class="diff-btn focusable" data-difficulty="hard">Normal</button>
+        <button class="diff-btn focusable" data-difficulty="impossible">Hard</button>
+        <div class="diff-desc" id="diff-desc">A relaxed experience</div>
+        <div class="diff-record" id="diff-record"></div>
+      </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen hidden">
+      <canvas id="battlefield" width="600" height="600"></canvas>
+
+      <!-- Top HUD -->
+      <div id="hud-top" class="hud-bar hud-top">
+        <div class="hud-hp-section">
+          <div class="hud-hp-bar player-hp-bar">
+            <div class="hud-hp-fill" id="player-hp-fill"></div>
+          </div>
+          <span class="hud-hp-label" id="player-hp-label">1000</span>
+        </div>
+        <div class="hud-center">
+          <div class="hud-gold">
+            <span class="hud-gold-icon">&#9733;</span>
+            <span id="hud-gold-value">150</span>
+          </div>
+          <div class="hud-age" id="hud-age">STONE AGE</div>
+          <div class="hud-xp">
+            <span class="hud-xp-label">XP</span>
+            <div class="hud-xp-bar">
+              <div class="hud-xp-fill" id="hud-xp-fill"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hud-hp-section">
+          <span class="hud-hp-label enemy-label" id="enemy-hp-label">1000</span>
+          <div class="hud-hp-bar enemy-hp-bar">
+            <div class="hud-hp-fill enemy-hp-fill" id="enemy-hp-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Action Bar -->
+      <div id="hud-bottom" class="hud-bar hud-bottom">
+        <button class="action-btn focusable" data-action="spawn-0" id="action-0">
+          <span class="action-name" id="action-0-name">Club Man</span>
+          <span class="action-cost" id="action-0-cost">15g</span>
+        </button>
+        <button class="action-btn focusable" data-action="spawn-1" id="action-1">
+          <span class="action-name" id="action-1-name">Slingshot</span>
+          <span class="action-cost" id="action-1-cost">25g</span>
+        </button>
+        <button class="action-btn focusable" data-action="spawn-2" id="action-2">
+          <span class="action-name" id="action-2-name">Dino</span>
+          <span class="action-cost" id="action-2-cost">100g</span>
+        </button>
+        <button class="action-btn focusable" data-action="turret" id="action-turret">
+          <span class="action-name" id="action-turret-name">Turrets</span>
+          <span class="action-cost" id="action-turret-cost">Menu</span>
+        </button>
+        <button class="action-btn focusable" data-action="special" id="action-special">
+          <span class="action-name" id="action-special-name">Meteor</span>
+          <span class="action-cost" id="action-special-cost">Ready</span>
+        </button>
+        <button class="action-btn focusable" data-action="evolve" id="action-evolve">
+          <span class="action-name">EVOLVE</span>
+          <span class="action-cost" id="action-evolve-cost">&#9650;</span>
+        </button>
+      </div>
+
+      <!-- Turret Menu Overlay -->
+      <div id="turret-overlay" class="turret-overlay hidden">
+        <div class="turret-menu">
+          <div class="turret-menu-title">TURRETS</div>
+          <div class="turret-status" id="turret-status">Slot 1: empty</div>
+          <div class="turret-options">
+            <button class="turret-opt focusable" data-turret="0" id="topt-0">
+              <span class="topt-name" id="topt-0-name">T1</span>
+              <span class="topt-cost" id="topt-0-cost">75g</span>
+            </button>
+            <button class="turret-opt focusable" data-turret="1" id="topt-1">
+              <span class="topt-name" id="topt-1-name">T2</span>
+              <span class="topt-cost" id="topt-1-cost">200g</span>
+            </button>
+            <button class="turret-opt focusable" data-turret="2" id="topt-2">
+              <span class="topt-name" id="topt-2-name">T3</span>
+              <span class="topt-cost" id="topt-2-cost">500g</span>
+            </button>
+            <button class="turret-opt focusable" data-turret="slot" id="topt-slot">
+              <span class="topt-name">+Slot</span>
+              <span class="topt-cost" id="topt-slot-cost">1000g</span>
+            </button>
+            <button class="turret-opt focusable" data-turret="sell" id="topt-sell">
+              <span class="topt-name">Sell</span>
+              <span class="topt-cost" id="topt-sell-cost">&nbsp;</span>
+            </button>
+            <button class="turret-opt focusable" data-turret="back" id="topt-back">
+              <span class="topt-name">&#8592; Back</span>
+              <span class="topt-cost">&nbsp;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pause Overlay -->
+      <div id="pause-overlay" class="pause-overlay hidden">
+        <div class="pause-content">
+          <h2>PAUSED</h2>
+          <button class="pause-btn focusable" data-action="resume">Resume</button>
+          <button class="pause-btn focusable danger" data-action="quit">Quit to Title</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="screen hidden">
+      <div class="result-content">
+        <h1 class="result-title" id="result-title">VICTORY!</h1>
+        <div class="result-stats">
+          <div class="result-stat">
+            <span class="result-label">Time</span>
+            <span class="result-value" id="result-time">0:00</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-label">Final Age</span>
+            <span class="result-value" id="result-age">Stone Age</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-label">Units Spawned</span>
+            <span class="result-value" id="result-units">0</span>
+          </div>
+        </div>
+        <div class="result-prompt">Press Enter to Play Again</div>
+      </div>
+    </div>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
