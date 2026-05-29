@@ -7,7 +7,7 @@
   // ==================== AGE DATA (original game stats, XP reduced ~30%) ====================
   var AGES = [
     {
-      name: 'Stone Age', index: 0, xpToNext: 1024,
+      name: 'Stone Age', index: 0, xpToNext: 717,
       baseColor: '#6B4226', roofColor: '#8B6914',
       playerColors: ['#8B6914', '#A0522D', '#6B8E23'],
       enemyColors: ['#8B3A14', '#A03A2D', '#8E6B23'],
@@ -28,10 +28,10 @@
         { name: 'Prim. Cat.', cost: 500, damage: 11, range: 240, cooldown: 1750, color: '#5A4A3A', projColor: '#AA9070' }
       ],
       slotCost: 1000,
-      special: { name: 'Meteor', cooldown: 45000, damage: 120, radius: 250, color: '#FF4500' }
+      special: { name: 'Meteor', cooldown: 45000, damage: 139, radius: 250, color: '#FF4500' }
     },
     {
-      name: 'Medieval', index: 1, xpToNext: 3520,
+      name: 'Medieval', index: 1, xpToNext: 1434,
       baseColor: '#4A4A5A', roofColor: '#5A5A6A',
       playerColors: ['#4169E1', '#228B22', '#B8860B'],
       enemyColors: ['#E14169', '#8B6B22', '#B86B0B'],
@@ -52,10 +52,10 @@
         { name: 'War Cat.', cost: 1200, damage: 29, range: 260, cooldown: 1800, color: '#5A4A3A', projColor: '#AA8866' }
       ],
       slotCost: 1000,
-      special: { name: 'Arrows', cooldown: 40000, damage: 150, radius: 300, color: '#C0C0C0' }
+      special: { name: 'Arrows', cooldown: 40000, damage: 173, radius: 300, color: '#C0C0C0' }
     },
     {
-      name: 'Renaissance', index: 2, xpToNext: 11520,
+      name: 'Renaissance', index: 2, xpToNext: 2868,
       baseColor: '#5A4A3A', roofColor: '#7A6A5A',
       playerColors: ['#CD853F', '#8B0000', '#DAA520'],
       enemyColors: ['#CD5F3F', '#8B4500', '#DA6B20'],
@@ -76,10 +76,10 @@
         { name: 'Explosive', cost: 6000, damage: 45, range: 300, cooldown: 1750, color: '#3A3A3A', projColor: '#FF4400' }
       ],
       slotCost: 1000,
-      special: { name: 'Heal', cooldown: 50000, damage: 0, radius: 600, color: '#00FF88', isHeal: true, healAmount: 120 }
+      special: { name: 'Barrage', cooldown: 45000, damage: 208, radius: 300, color: '#CD853F' }
     },
     {
-      name: 'Modern', index: 3, xpToNext: 51200,
+      name: 'Modern', index: 3, xpToNext: 5736,
       baseColor: '#3A4A3A', roofColor: '#4A5A4A',
       playerColors: ['#556B2F', '#2E8B57', '#696969'],
       enemyColors: ['#6B2F2F', '#8B572E', '#696950'],
@@ -100,7 +100,7 @@
         { name: 'Double MG', cost: 14000, damage: 32, range: 300, cooldown: 850, color: '#3A4A3A', projColor: '#FFFF44' }
       ],
       slotCost: 1000,
-      special: { name: 'Artillery', cooldown: 40000, damage: 300, radius: 350, color: '#FF8800' }
+      special: { name: 'Artillery', cooldown: 40000, damage: 347, radius: 350, color: '#FF8800' }
     },
     {
       name: 'Future', index: 4, xpToNext: Infinity,
@@ -124,7 +124,7 @@
         { name: 'Ion Ray', cost: 100000, damage: 27, range: 480, cooldown: 450, color: '#6644AA', projColor: '#AA88FF' }
       ],
       slotCost: 1000,
-      special: { name: 'God Blast', cooldown: 35000, damage: 500, radius: 300, color: '#00FFFF' }
+      special: { name: 'God Blast', cooldown: 35000, damage: 578, radius: 300, color: '#00FFFF' }
     }
   ];
 
@@ -142,7 +142,7 @@
   var PASSIVE_GOLD_BASE = 2;
   var UNIT_CAP = 20;
   var MAX_QUEUE = 5;
-  var GROUND_Y = 420;
+  var GROUND_Y = 440;
   var PLAYER_BASE_X = 50;
   var ENEMY_BASE_X = 550;
 
@@ -463,7 +463,7 @@
   function formatTime(ms){var s=Math.floor(ms/1000);var m=Math.floor(s/60);s%=60;return m+':'+(s<10?'0':'')+s;}
 
   // ==================== RENDER ====================
-  function render(){if(!ctx)return;ctx.clearRect(0,0,600,600);drawBackground();drawBases();drawTurretsOnBase();drawUnits();drawProjectiles();drawEffects();updateHUD();}
+  function render(){if(!ctx)return;ctx.clearRect(0,0,600,600);ctx.save();ctx.translate(300,300);ctx.scale(1.18,1.18);ctx.translate(-300,-370);drawBackground();drawBases();drawTurretsOnBase();drawUnits();drawProjectiles();drawEffects();ctx.restore();updateHUD();}
 
   function drawBackground() {
     var bgAge = Math.max(game.player.age, game.enemy.age);
@@ -655,7 +655,7 @@
     if(game.player.age>=AGES.length-1){document.getElementById('action-evolve-cost').textContent='MAX';eBtn.classList.add('cannot-afford');eBtn.classList.remove('evolve-ready');}
     else if(canEv){document.getElementById('action-evolve-cost').textContent='GO!';eBtn.classList.remove('cannot-afford');eBtn.classList.add('evolve-ready');}
     else{var xpN=pAge.xpToNext-game.player.xp;document.getElementById('action-evolve-cost').textContent=xpN>9999?Math.floor(xpN/1000)+'k':Math.floor(xpN)+'xp';eBtn.classList.add('cannot-afford');eBtn.classList.remove('evolve-ready');}
-    if(game.player.buildQueue.length>0){var q=game.player.buildQueue;ctx.save();ctx.fillStyle='rgba(10,10,15,0.9)';ctx.fillRect(0,GROUND_Y+92,210,20);ctx.fillStyle='#FFFFFF';ctx.font='bold 12px sans-serif';var pct=1.0-(q[0].remaining/q[0].totalTime);ctx.fillText('Build: '+q[0].template.name+' ('+q.length+'/'+MAX_QUEUE+')',6,GROUND_Y+106);ctx.fillStyle='#333';ctx.fillRect(160,GROUND_Y+96,44,10);ctx.fillStyle='#00d4ff';ctx.fillRect(160,GROUND_Y+96,44*pct,10);ctx.restore();}
+    if(game.player.buildQueue.length>0){var q=game.player.buildQueue;ctx.save();ctx.fillStyle='rgba(10,10,15,0.9)';ctx.fillRect(0,GROUND_Y+60,210,20);ctx.fillStyle='#FFFFFF';ctx.font='bold 14px sans-serif';var pct=1.0-(q[0].remaining/q[0].totalTime);ctx.fillText('Build: '+q[0].template.name+' ('+q.length+'/'+MAX_QUEUE+')',6,GROUND_Y+74);ctx.fillStyle='#333';ctx.fillRect(160,GROUND_Y+64,44,10);ctx.fillStyle='#00d4ff';ctx.fillRect(160,GROUND_Y+64,44*pct,10);ctx.restore();}
   }
 
   // ==================== ACTIONS ====================
@@ -673,13 +673,17 @@
   function handleTitleInput(e){var btns=document.querySelectorAll('#title-screen .title-btn');var focused=document.activeElement;var idx=Array.from(btns).indexOf(focused);switch(e.key){case'ArrowUp':case'ArrowLeft':if(idx<=0)idx=btns.length-1;else idx--;btns[idx].focus();playSound('nav');break;case'ArrowDown':case'ArrowRight':if(idx>=btns.length-1)idx=0;else idx++;btns[idx].focus();playSound('nav');break;case'Enter':if(focused&&focused.dataset.title==='music')toggleMusic();else if(focused&&focused.dataset.title==='sfx')toggleSfx();else{navigateTo('difficulty-screen',{addToHistory:false});}break;}}
   function handleDifficultyInput(e){var btns=document.querySelectorAll('#difficulty-screen .diff-btn'),focused=document.activeElement,idx=Array.from(btns).indexOf(focused);var descs={normal:'A relaxed experience',hard:'A balanced challenge',impossible:'Only the best survive'};switch(e.key){case'ArrowUp':case'ArrowLeft':if(idx<=0)idx=btns.length-1;else idx--;btns[idx].focus();playSound('nav');document.getElementById('diff-desc').textContent=descs[btns[idx].dataset.difficulty]||'';e.preventDefault();break;case'ArrowDown':case'ArrowRight':if(idx>=btns.length-1)idx=0;else idx++;btns[idx].focus();playSound('nav');document.getElementById('diff-desc').textContent=descs[btns[idx].dataset.difficulty]||'';e.preventDefault();break;case'Enter':if(focused&&focused.dataset.difficulty){game.difficulty=focused.dataset.difficulty;game.diffConfig=DIFFICULTIES[game.difficulty];navigateTo('game-screen',{addToHistory:false});}e.preventDefault();break;case'Escape':navigateTo('title-screen',{addToHistory:false});e.preventDefault();break;}}
   function handleGameInput(e){var btns=document.querySelectorAll('#hud-bottom .action-btn'),focused=document.activeElement,idx=Array.from(btns).indexOf(focused);switch(e.key){case'ArrowLeft':if(idx<=0)idx=btns.length-1;else idx--;btns[idx].focus();playSound('nav');e.preventDefault();break;case'ArrowRight':if(idx>=btns.length-1)idx=0;else idx++;btns[idx].focus();playSound('nav');e.preventDefault();break;case'Enter':if(focused&&focused.dataset.action)executeAction(focused.dataset.action);e.preventDefault();break;case'Escape':togglePause();e.preventDefault();break;case'ArrowUp':case'ArrowDown':e.preventDefault();break;}game.hudDirty=true;}
-  function handleTurretMenuInput(e){var btns=document.querySelectorAll('#turret-overlay .turret-opt'),focused=document.activeElement,idx=Array.from(btns).indexOf(focused);switch(e.key){case'ArrowLeft':case'ArrowUp':if(idx<=0)idx=btns.length-1;else idx--;btns[idx].focus();playSound('nav');e.preventDefault();break;case'ArrowRight':case'ArrowDown':if(idx>=btns.length-1)idx=0;else idx++;btns[idx].focus();playSound('nav');e.preventDefault();break;case'Enter':if(focused&&focused.dataset.turret)handleTurretMenuAction(focused.dataset.turret);e.preventDefault();break;case'Escape':closeTurretMenu();e.preventDefault();break;}}
+  function handleTurretMenuInput(e){var btns=document.querySelectorAll('#turret-overlay .turret-opt');var focused=document.activeElement;var idx=Array.from(btns).indexOf(focused);if(idx<0)idx=0;var row=Math.floor(idx/3);var col=idx%3;switch(e.key){case'ArrowLeft':col=col<=0?2:col-1;btns[row*3+col].focus();playSound('nav');e.preventDefault();break;case'ArrowRight':col=col>=2?0:col+1;btns[row*3+col].focus();playSound('nav');e.preventDefault();break;case'ArrowUp':row=row<=0?1:row-1;btns[row*3+col].focus();playSound('nav');e.preventDefault();break;case'ArrowDown':row=row>=1?0:row+1;btns[row*3+col].focus();playSound('nav');e.preventDefault();break;case'Enter':if(focused&&focused.dataset.turret)handleTurretMenuAction(focused.dataset.turret);e.preventDefault();break;case'Escape':closeTurretMenu();e.preventDefault();break;}}
   function handlePauseInput(e){var btns=document.querySelectorAll('#pause-overlay .pause-btn'),focused=document.activeElement,idx=Array.from(btns).indexOf(focused);switch(e.key){case'ArrowUp':case'ArrowLeft':if(idx<=0)idx=btns.length-1;else idx--;btns[idx].focus();e.preventDefault();break;case'ArrowDown':case'ArrowRight':if(idx>=btns.length-1)idx=0;else idx++;btns[idx].focus();e.preventDefault();break;case'Enter':if(focused&&focused.dataset.action==='resume')togglePause();else if(focused&&focused.dataset.action==='quit'){togglePause();stopGameLoop();stopMusic();navigateTo('title-screen',{addToHistory:false});}e.preventDefault();break;case'Escape':togglePause();e.preventDefault();break;}}
-  function togglePause(){game.paused=!game.paused;var ov=document.getElementById('pause-overlay');if(game.paused){ov.classList.remove('hidden');ov.querySelector('.pause-btn').focus();}else{ov.classList.add('hidden');var b=document.querySelectorAll('#hud-bottom .action-btn');if(b.length)b[0].focus();}}
+  function togglePause(){game.paused=!game.paused;var ov=document.getElementById('pause-overlay');if(game.paused){pauseMusic();ov.classList.remove('hidden');ov.querySelector('.pause-btn').focus();}else{resumeMusic();ov.classList.add('hidden');var b=document.querySelectorAll('#hud-bottom .action-btn');if(b.length)b[0].focus();}}
 
   function onScreenEnter(sid){switch(sid){case'title-screen':stopGameLoop();stopMusic();loadAudioPrefs();var st=loadStats();var sub=document.querySelector('.title-sub');if(sub&&(st.wins||st.losses))sub.textContent='Wins: '+st.wins+' | Losses: '+st.losses+(st.bestTime<Infinity?' | Best: '+formatTime(st.bestTime):'');var startBtn=document.getElementById('title-start');if(startBtn)startBtn.focus();break;case'difficulty-screen':var fb=document.querySelector('#difficulty-screen .diff-btn');if(fb){fb.focus();document.getElementById('diff-desc').textContent='A relaxed experience';}var sr=loadStats(),rec=document.getElementById('diff-record');if(rec&&(sr.wins||sr.losses))rec.textContent='Record: '+sr.wins+'W / '+sr.losses+'L';else if(rec)rec.textContent='';break;case'game-screen':resetGameState();startGameLoop();startMusic();var b=document.querySelectorAll('#hud-bottom .action-btn');if(b.length)setTimeout(function(){b[0].focus();},100);break;}}
   function resetGameState(){nextId=1;totalUnitsSpawned=0;lastGoldTick=0;turretMenuOpen=false;game.elapsed=0;game.paused=false;game.projectiles=[];game.effects=[];game.specialStrikes=[];game.player.baseHP=BASE_HP;game.player.baseMaxHP=BASE_HP;game.player.gold=STARTING_GOLD;game.player.xp=0;game.player.age=0;game.player.turretSlots=1;game.player.turrets=[null,null];game.player.specialCooldownEnd=0;game.player.units=[];game.player.buildQueue=[];game.enemy.baseHP=BASE_HP;game.enemy.baseMaxHP=BASE_HP;game.enemy.gold=0;game.enemy.xp=0;game.enemy.age=0;game.enemy.turretSlots=1;game.enemy.turrets=[null,null];game.enemy.units=[];game.enemy.ai.nextSpawnTime=game.diffConfig.enemyStartDelay;game.enemy.ai.spawnInterval=3500;game.enemy.ai.aggression=0.3;game.enemy.ai.evolveXP=0;game.enemy.ai.nextSpecialTime=60000;game.hudDirty=true;document.getElementById('pause-overlay').classList.add('hidden');document.getElementById('turret-overlay').classList.add('hidden');}
 
-  function init(){collectScreens();var c=document.getElementById('battlefield');if(c)ctx=c.getContext('2d');loadAudioPrefs();setupEvents();document.addEventListener('visibilitychange',function(){if(document.hidden&&game.running&&!game.paused&&game.currentScreen==='game-screen')togglePause();});navigateTo('title-screen',{addToHistory:false});}
+  function init(){collectScreens();var c=document.getElementById('battlefield');if(c)ctx=c.getContext('2d');loadAudioPrefs();setupEvents();document.addEventListener('visibilitychange',function(){if(document.hidden&&game.running&&!game.paused&&game.currentScreen==='game-screen')togglePause();});window.addEventListener('blur', function() {
+  if (game.running && !game.paused && game.currentScreen === 'game-screen') {
+    togglePause();
+  }
+});navigateTo('title-screen',{addToHistory:false});}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

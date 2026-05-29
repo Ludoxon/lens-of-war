@@ -51,10 +51,6 @@
           <span class="hud-hp-label" id="player-hp-label">1000</span>
         </div>
         <div class="hud-center">
-          <div class="hud-gold">
-            <span class="hud-gold-icon">&#9733;</span>
-            <span id="hud-gold-value">150</span>
-          </div>
           <div class="hud-age" id="hud-age">STONE AGE</div>
           <div class="hud-xp">
             <span class="hud-xp-label">XP</span>
@@ -73,6 +69,11 @@
 
       <!-- Bottom Action Bar -->
       <div id="hud-bottom" class="hud-bar hud-bottom">
+        <div class="hud-bottom-gold">
+          <span class="hud-gold-icon"><svg width="20" height="14" viewBox="0 0 20 14" fill="none"><ellipse cx="4" cy="11" rx="4" ry="3" fill="#B8860B" stroke="#8B6914" stroke-width="0.6"/><ellipse cx="10" cy="11" rx="4" ry="3" fill="#DAA520" stroke="#8B6914" stroke-width="0.6"/><ellipse cx="16" cy="11" rx="4" ry="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.6"/><ellipse cx="7" cy="7" rx="4" ry="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.6"/><ellipse cx="13" cy="7" rx="4" ry="3" fill="#FFC800" stroke="#DAA520" stroke-width="0.6"/><ellipse cx="10" cy="3.5" rx="4" ry="3" fill="#FFE44D" stroke="#DAA520" stroke-width="0.6"/></svg></span>
+          <span id="hud-gold-value">150</span>
+        </div>
+        <div class="hud-bottom-actions">
         <button class="action-btn focusable" data-action="spawn-0" id="action-0">
           <span class="action-name" id="action-0-name">Club Man</span>
           <span class="action-cost" id="action-0-cost">15g</span>
@@ -97,6 +98,7 @@
           <span class="action-name">EVOLVE</span>
           <span class="action-cost" id="action-evolve-cost">&#9650;</span>
         </button>
+        </div>
       </div>
 
       <!-- Turret Menu Overlay -->
@@ -105,30 +107,34 @@
           <div class="turret-menu-title">TURRETS</div>
           <div class="turret-status" id="turret-status">Slot 1: empty</div>
           <div class="turret-options">
-            <button class="turret-opt focusable" data-turret="0" id="topt-0">
-              <span class="topt-name" id="topt-0-name">T1</span>
-              <span class="topt-cost" id="topt-0-cost">75g</span>
-            </button>
-            <button class="turret-opt focusable" data-turret="1" id="topt-1">
-              <span class="topt-name" id="topt-1-name">T2</span>
-              <span class="topt-cost" id="topt-1-cost">200g</span>
-            </button>
-            <button class="turret-opt focusable" data-turret="2" id="topt-2">
-              <span class="topt-name" id="topt-2-name">T3</span>
-              <span class="topt-cost" id="topt-2-cost">500g</span>
-            </button>
-            <button class="turret-opt focusable" data-turret="slot" id="topt-slot">
-              <span class="topt-name">+Slot</span>
-              <span class="topt-cost" id="topt-slot-cost">1000g</span>
-            </button>
-            <button class="turret-opt focusable" data-turret="sell" id="topt-sell">
-              <span class="topt-name">Sell</span>
-              <span class="topt-cost" id="topt-sell-cost">&nbsp;</span>
-            </button>
-            <button class="turret-opt focusable" data-turret="back" id="topt-back">
-              <span class="topt-name">&#8592; Back</span>
-              <span class="topt-cost">&nbsp;</span>
-            </button>
+            <div class="turret-row">
+              <button class="turret-opt focusable" data-turret="0" id="topt-0">
+                <span class="topt-name" id="topt-0-name">T1</span>
+                <span class="topt-cost" id="topt-0-cost">75g</span>
+              </button>
+              <button class="turret-opt focusable" data-turret="1" id="topt-1">
+                <span class="topt-name" id="topt-1-name">T2</span>
+                <span class="topt-cost" id="topt-1-cost">200g</span>
+              </button>
+              <button class="turret-opt focusable" data-turret="2" id="topt-2">
+                <span class="topt-name" id="topt-2-name">T3</span>
+                <span class="topt-cost" id="topt-2-cost">500g</span>
+              </button>
+            </div>
+            <div class="turret-row">
+              <button class="turret-opt focusable" data-turret="slot" id="topt-slot">
+                <span class="topt-name">+Slot</span>
+                <span class="topt-cost" id="topt-slot-cost">1000g</span>
+              </button>
+              <button class="turret-opt focusable" data-turret="sell" id="topt-sell">
+                <span class="topt-name">Sell</span>
+                <span class="topt-cost" id="topt-sell-cost">&nbsp;</span>
+              </button>
+              <button class="turret-opt focusable" data-turret="back" id="topt-back">
+                <span class="topt-name">&#8592; Back</span>
+                <span class="topt-cost">&nbsp;</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
