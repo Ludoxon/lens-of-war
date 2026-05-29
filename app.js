@@ -23,9 +23,9 @@
           xpReward: 50, goldReward: 130, buildTime: 3000 }
       ],
       turrets: [
-        { name: 'Rock Sling', cost: 100, damage: 5, range: 210, cooldown: 750, color: '#696969', projColor: '#808080' },
-        { name: 'Egg Auto', cost: 200, damage: 2, range: 180, cooldown: 450, color: '#7A7A5A', projColor: '#AAAA80' },
-        { name: 'Prim. Cat.', cost: 500, damage: 11, range: 240, cooldown: 1750, color: '#5A4A3A', projColor: '#AA9070' }
+        { name: 'Rock Sling', cost: 100, damage: 6, range: 210, cooldown: 750, color: '#696969', projColor: '#808080' },
+        { name: 'Egg Auto', cost: 200, damage: 3, range: 180, cooldown: 450, color: '#7A7A5A', projColor: '#AAAA80' },
+        { name: 'Prim. Cat.', cost: 500, damage: 13, range: 240, cooldown: 1750, color: '#5A4A3A', projColor: '#AA9070' }
       ],
       slotCost: 1000,
       special: { name: 'Meteor', cooldown: 45000, damage: 139, radius: 250, color: '#FF4500' }
@@ -47,9 +47,9 @@
           xpReward: 120, goldReward: 650, buildTime: 3000 }
       ],
       turrets: [
-        { name: 'Catapult', cost: 500, damage: 18, range: 240, cooldown: 1750, color: '#708090', projColor: '#B0B0B0' },
-        { name: 'Fire Cat.', cost: 750, damage: 22, range: 240, cooldown: 1750, color: '#8B4513', projColor: '#FF6633' },
-        { name: 'War Cat.', cost: 1200, damage: 29, range: 260, cooldown: 1800, color: '#5A4A3A', projColor: '#AA8866' }
+        { name: 'Catapult', cost: 500, damage: 21, range: 240, cooldown: 1750, color: '#708090', projColor: '#B0B0B0' },
+        { name: 'Fire Cat.', cost: 750, damage: 25, range: 240, cooldown: 1750, color: '#8B4513', projColor: '#FF6633' },
+        { name: 'War Cat.', cost: 1200, damage: 33, range: 260, cooldown: 1800, color: '#5A4A3A', projColor: '#AA8866' }
       ],
       slotCost: 1000,
       special: { name: 'Arrows', cooldown: 40000, damage: 173, radius: 300, color: '#C0C0C0' }
@@ -71,9 +71,9 @@
           xpReward: 200, goldReward: 1300, buildTime: 5000 }
       ],
       turrets: [
-        { name: 'Sm. Cannon', cost: 1500, damage: 14, range: 300, cooldown: 1750, color: '#5A5A5A', projColor: '#888888' },
-        { name: 'Lg. Cannon', cost: 3000, damage: 32, range: 300, cooldown: 1750, color: '#4A4A4A', projColor: '#999999' },
-        { name: 'Explosive', cost: 6000, damage: 45, range: 300, cooldown: 1750, color: '#3A3A3A', projColor: '#FF4400' }
+        { name: 'Sm. Cannon', cost: 1500, damage: 16, range: 300, cooldown: 1750, color: '#5A5A5A', projColor: '#888888' },
+        { name: 'Lg. Cannon', cost: 3000, damage: 37, range: 300, cooldown: 1750, color: '#4A4A4A', projColor: '#999999' },
+        { name: 'Explosive', cost: 6000, damage: 52, range: 300, cooldown: 1750, color: '#3A3A3A', projColor: '#FF4400' }
       ],
       slotCost: 1000,
       special: { name: 'Barrage', cooldown: 45000, damage: 208, radius: 300, color: '#CD853F' }
@@ -95,9 +95,9 @@
           xpReward: 1500, goldReward: 9100, buildTime: 8000 }
       ],
       turrets: [
-        { name: 'MG Turret', cost: 7000, damage: 32, range: 300, cooldown: 1200, color: '#4A5A4A', projColor: '#FFFF00' },
-        { name: 'Rocket', cost: 9000, damage: 45, range: 300, cooldown: 1500, color: '#5A5A4A', projColor: '#FF8800' },
-        { name: 'Double MG', cost: 14000, damage: 32, range: 300, cooldown: 850, color: '#3A4A3A', projColor: '#FFFF44' }
+        { name: 'MG Turret', cost: 7000, damage: 37, range: 300, cooldown: 1200, color: '#4A5A4A', projColor: '#FFFF00' },
+        { name: 'Rocket', cost: 9000, damage: 52, range: 300, cooldown: 1500, color: '#5A5A4A', projColor: '#FF8800' },
+        { name: 'Double MG', cost: 14000, damage: 37, range: 300, cooldown: 850, color: '#3A4A3A', projColor: '#FFFF44' }
       ],
       slotCost: 1000,
       special: { name: 'Artillery', cooldown: 40000, damage: 347, radius: 350, color: '#FF8800' }
@@ -119,9 +119,9 @@
           xpReward: 5000, goldReward: 26000, buildTime: 8000 }
       ],
       turrets: [
-        { name: 'Titanium', cost: 24000, damage: 45, range: 240, cooldown: 1200, color: '#4488AA', projColor: '#00FFFF' },
-        { name: 'Laser', cost: 40000, damage: 18, range: 300, cooldown: 450, color: '#00AA66', projColor: '#00FF88' },
-        { name: 'Ion Ray', cost: 100000, damage: 27, range: 480, cooldown: 450, color: '#6644AA', projColor: '#AA88FF' }
+        { name: 'Titanium', cost: 24000, damage: 52, range: 240, cooldown: 1200, color: '#4488AA', projColor: '#00FFFF' },
+        { name: 'Laser', cost: 40000, damage: 21, range: 300, cooldown: 450, color: '#00AA66', projColor: '#00FF88' },
+        { name: 'Ion Ray', cost: 100000, damage: 31, range: 480, cooldown: 450, color: '#6644AA', projColor: '#AA88FF' }
       ],
       slotCost: 1000,
       special: { name: 'God Blast', cooldown: 35000, damage: 578, radius: 300, color: '#00FFFF' }
